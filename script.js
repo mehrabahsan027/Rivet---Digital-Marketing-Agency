@@ -54,7 +54,55 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
 
 
+  // Initialize Lenis smooth scroll
+  const lenis = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    orientation: 'vertical',
+    gestureOrientation: 'vertical',
+    smoothWheel: true,
+    wheelMultiplier: 1,
+    smoothTouch: false,
+    touchMultiplier: 2,
+    infinite: false,
+  })
+
+  // Get scroll value for GSAP ScrollTrigger
+  function raf(time) {
+    lenis.raf(time)
+    requestAnimationFrame(raf)
+  }
+
+  requestAnimationFrame(raf)
+
+  // Integrate Lenis with GSAP ScrollTrigger
+  lenis.on('scroll', ScrollTrigger.update)
+
+  gsap.ticker.add((time) => {
+    lenis.raf(time * 1000)
+  })
+
+  gsap.ticker.lagSmoothing(0)
+
   gsap.registerPlugin(ScrollTrigger, ScrollSmoother)
+
+  // Handle anchor links with Lenis smooth scroll
+
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const href = this.getAttribute('href')
+      if (href !== '#' && href !== '') {
+        e.preventDefault()
+        const target = document.querySelector(href)
+        if (target) {
+          lenis.scrollTo(target, {
+            offset: -100,
+            duration: 3
+          })
+        }
+      }
+    })
+  })
 
  
 
@@ -328,13 +376,17 @@ document.addEventListener("DOMContentLoaded", (event) => {
       duration: 2,
 
     })
-    gtlMobile.from('#hero-heading ', {
+   
+    gtlMobile.from('#hero-heading span', {
       y: 40,
       opacity: 0,
-      duration: 0.5,
+      duration: 0.3,
 
 
-    })
+
+
+      stagger: 0.1
+    }, '=-1')
     gtlMobile.from('.text p', {
       y: 30,
       opacity: 0,
