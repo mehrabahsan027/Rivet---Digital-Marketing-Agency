@@ -12,7 +12,15 @@
 }
 
 body {
-    background-image: linear-gradient(to right bottom, #e4cffb96, #d0dcffa9, #bfe9ffa6, #d4539a3b, #70eef528);
+    background: 
+        radial-gradient(circle at 20% 40%, rgba(0, 186, 199, 0.25) 0%, transparent 65%),
+        radial-gradient(circle at 80% 60%, rgba(102, 126, 234, 0.22) 0%, transparent 65%),
+        radial-gradient(circle at 50% 20%, rgba(57, 97, 130, 0.2) 0%, transparent 60%),
+        radial-gradient(circle at 30% 80%, rgba(159, 122, 234, 0.18) 0%, transparent 60%),
+        radial-gradient(circle at 70% 10%, rgba(0, 186, 199, 0.15) 0%, transparent 55%),
+        linear-gradient(135deg, #e8f0f7 0%, #d8e8f5 15%, #e0f0f8 30%, #d0e0f5 45%, #e8f2f9 60%, #d8eaf5 75%, #e0f0f7 90%, #e8f4fa 100%);
+    background-attachment: fixed;
+    background-size: 100% 100%;
     font-family: 'Inter', sans-serif;
 
 }
