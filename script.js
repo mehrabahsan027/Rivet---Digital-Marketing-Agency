@@ -392,7 +392,23 @@ document.addEventListener("DOMContentLoaded", (event) => {
       opacity: 0,
       duration: 0.3
     })
+    gtlMobile.from('.hero .text .button-div', {
+      y: 20,
+      opacity: 0,
+      duration: 0.6,
+      ease: 'power2.out'
+    })
+    gtlMobile.from('.hero .image', {
+      y: 20,
+      opacity: 0,
+      duration: 0.6,
+      ease: 'power2.out'
+    })
 
   })
+  
+
+
+
 
 });
